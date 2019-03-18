@@ -5,7 +5,7 @@ using SerpentAPI.Models;
 using SerpentAPI.Enums;
 using System.Linq;
 
-namespace SerpentTests
+namespace SerpentTests.Tests.Kernel
 {
     public class RecordSeverityLevelTests
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using SerpentTests.Mocks;
 using SerpentAPI.Exceptions;
 
-namespace SerpentTests
+namespace SerpentTests.Tests.Kernel
 {
     public class RecordFlushingTests
     {
