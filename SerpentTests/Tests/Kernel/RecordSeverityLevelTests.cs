@@ -4,6 +4,7 @@ using SerpentLogger;
 using SerpentAPI.Models;
 using SerpentAPI.Enums;
 using System.Linq;
+using SerpentAPI.Exceptions;
 
 namespace SerpentTests.Tests.Kernel
 {
@@ -76,6 +77,31 @@ namespace SerpentTests.Tests.Kernel
             var serpent = new SerpentKernel();
             var newEntry = new SerpentEntry(String.Empty, EntrySeverity.Critical);
 
+            serpent.MaximumSeverity = EntrySeverity.Critical;
+            serpent.Record(newEntry);
+
+            Assert.NotEmpty(serpent.GetRecords());
+        }
+
+        [Fact]
+        public void ThrowOnInvalidSeverityRange()
+        {
+            var serpent = new SerpentKernel();
+            var newEntry = new SerpentEntry(String.Empty);
+            
+            serpent.MinimumSeverity = EntrySeverity.Critical;
+            serpent.MaximumSeverity = EntrySeverity.Low;
+
+            Assert.Throws<InvalidSeverityRangeException>( () => serpent.Record(newEntry));
+        }
+
+        [Fact]
+        public void PassSingleSeverityRangeValue()
+        {
+            var serpent = new SerpentKernel();
+            var newEntry = new SerpentEntry(String.Empty,EntrySeverity.Critical);
+            
+            serpent.MinimumSeverity = EntrySeverity.Critical;
             serpent.MaximumSeverity = EntrySeverity.Critical;
             serpent.Record(newEntry);
 
