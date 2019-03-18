@@ -19,11 +19,7 @@ namespace SerpentTests.Tests.Kernel
             serpent.MinimumSeverity = EntrySeverity.High;
             serpent.Record(newEntry);
 
-            var records = serpent.GetRecords();
-            var recordCount = records.Count();
-            var isRecorded = recordCount == 1;
-
-            Assert.True(isRecorded);
+            Assert.NotEmpty(serpent.GetRecords());
         }
 
         [Fact]
@@ -35,12 +31,7 @@ namespace SerpentTests.Tests.Kernel
             serpent.MinimumSeverity = EntrySeverity.High;
             serpent.Record(newEntry);
 
-            var records = serpent.GetRecords();
-            var recordCount = records.Count();
-            var isRecorded = recordCount == 1;
-
-
-            Assert.False(isRecorded);
+            Assert.Empty(serpent.GetRecords());
         }
 
         [Fact]
@@ -52,11 +43,7 @@ namespace SerpentTests.Tests.Kernel
             serpent.MaximumSeverity = EntrySeverity.High;
             serpent.Record(newEntry);
 
-            var records = serpent.GetRecords();
-            var recordCount = records.Count();
-            var isRecorded = recordCount == 1;
-
-            Assert.True(isRecorded);
+            Assert.NotEmpty(serpent.GetRecords());
         }
 
         [Fact]
@@ -68,11 +55,7 @@ namespace SerpentTests.Tests.Kernel
             serpent.MaximumSeverity = EntrySeverity.High;
             serpent.Record(newEntry);
 
-            var records = serpent.GetRecords();
-            var recordCount = records.Count();
-            var isRecorded = recordCount == 1;
-
-            Assert.False(isRecorded);
+            Assert.Empty(serpent.GetRecords());
         }
 
         [Fact]
@@ -84,12 +67,7 @@ namespace SerpentTests.Tests.Kernel
             serpent.MinimumSeverity = EntrySeverity.Informational;
             serpent.Record(newEntry);
 
-            var records = serpent.GetRecords();
-            var recordCount = records.Count();
-            var isRecorded = recordCount == 1;
-
-            Assert.True(isRecorded);
-
+            Assert.NotEmpty(serpent.GetRecords());
         }
 
         [Fact]
@@ -101,12 +79,7 @@ namespace SerpentTests.Tests.Kernel
             serpent.MaximumSeverity = EntrySeverity.Critical;
             serpent.Record(newEntry);
 
-            var records = serpent.GetRecords();
-            var recordCount = records.Count();
-            var isRecorded = recordCount == 1;
-
-            Assert.True(isRecorded);
-
+            Assert.NotEmpty(serpent.GetRecords());
         }
     }
 }
