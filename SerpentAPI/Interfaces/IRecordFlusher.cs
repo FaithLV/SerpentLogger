@@ -6,5 +6,6 @@ namespace SerpentAPI.Interfaces
     {
         void SetRecordBuffer(IEnumerable<ISerpentEntry> record);
         void FlushRecordBuffer();
+        void FlushSingleEntry(ISerpentEntry entry);
     }
 }
