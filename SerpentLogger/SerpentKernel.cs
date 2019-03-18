@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using SerpentAPI.Common;
 using SerpentAPI.Enums;
 using SerpentAPI.Interfaces;
 
@@ -8,19 +9,21 @@ namespace SerpentLogger
 {
     public class SerpentKernel
     {
-        static List<ISerpentEntry> RecordedEntries = new List<ISerpentEntry>();
-        EntrySeverity MinimumSeverity { get; set; }
-        EntrySeverity MaximumSeverity { get; set; }
+        List<ISerpentEntry> RecordedEntries = new List<ISerpentEntry>();
+        public EntrySeverity MinimumSeverity { get; set; }
+        public EntrySeverity MaximumSeverity { get; set; }
         IRecordFlusher RecordFlusher { get; set; }
 
         public SerpentKernel()
         {
-            MinimumSeverity = EntrySeverity.Low;
+            MinimumSeverity = EntrySeverity.Informational;
             MaximumSeverity = EntrySeverity.Critical;
         }
 
         public void Record(ISerpentEntry entry)
         {
+            SerpentValidation.ValidateSeverityRange(MinimumSeverity, MaximumSeverity);
+
             if(entry.Severity >= MinimumSeverity && entry.Severity <= MaximumSeverity)
             {
                 RecordedEntries.Add(entry);
