@@ -11,14 +11,19 @@ namespace SerpentLogger
     public class SerpentKernel
     {
         List<ISerpentEntry> RecordedEntries = new List<ISerpentEntry>();
-        IRecordFlusher RecordFlusher { get; set; }
+        IRecordFlusher _recordFlusher { get; set; }
+        IDirectOutput _directOutput { get; set; }
 
         public EntrySeverity MinimumSeverity { get; set; }
         public EntrySeverity MaximumSeverity { get; set; }
         public bool ForceFlushOnRecord = false;
+        public bool SendRecordsToOutput = true;
 
-        public SerpentKernel()
+        public SerpentKernel(IRecordFlusher recordFlusher, IDirectOutput directOutput)
         {
+            _recordFlusher = recordFlusher;
+            _directOutput = directOutput;
+
             MinimumSeverity = EntrySeverity.Informational;
             MaximumSeverity = EntrySeverity.Critical;
         }
@@ -30,10 +35,11 @@ namespace SerpentLogger
             if(entry.Severity >= MinimumSeverity && entry.Severity <= MaximumSeverity)
             {
                 RecordedEntries.Add(entry);
+                WriteRecordToOutput(entry);
 
                 if(ForceFlushOnRecord)
                 {
-                    RecordFlusher.FlushSingleEntry(entry);
+                    _recordFlusher.FlushSingleEntry(entry);
                 }
             }
         }
@@ -50,14 +56,27 @@ namespace SerpentLogger
                 throw new InvalidFlushOperationException();
             }
             
-            RecordFlusher.SetRecordBuffer(RecordedEntries.AsReadOnly());
+            _recordFlusher.SetRecordBuffer(RecordedEntries.AsReadOnly());
             RecordedEntries = new List<ISerpentEntry>();
-            RecordFlusher.FlushRecordBuffer();
+            _recordFlusher.FlushRecordBuffer();
         }
 
         public void SetRecordFlusher(IRecordFlusher flusher)
         {
-            RecordFlusher = flusher;
+            _recordFlusher = flusher;
+        }
+
+        public void SetDirectOutput(IDirectOutput output)
+        {
+            _directOutput = output;
+        }
+
+        private void WriteRecordToOutput(ISerpentEntry entry)
+        {
+            if(SendRecordsToOutput)
+            {
+                _directOutput.WriteEntryLine(entry);
+            }
         }
     }
 }
