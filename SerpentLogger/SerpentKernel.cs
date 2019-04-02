@@ -28,6 +28,9 @@ namespace SerpentLogger
             MaximumSeverity = EntrySeverity.Critical;
         }
 
+        /// <summary> Write an entry to log record buffer
+        /// <param name="entry">Entry to write</param>
+        /// </summary>
         public void Record(ISerpentEntry entry)
         {
             SerpentValidation.ValidateSeverityRange(MinimumSeverity, MaximumSeverity);
@@ -44,11 +47,16 @@ namespace SerpentLogger
             }
         }
 
+        /// <summary> Get all records from currenty record buffer
+        /// </summary>
         public IEnumerable<ISerpentEntry> GetRecords()
         {
             return RecordedEntries.AsReadOnly();
         }
 
+
+        /// <summary> Clear current log buffers and flush to current IFlusher
+        /// </summary>
         public void FlushRecords()
         {
             if(ForceFlushOnRecord)
@@ -59,16 +67,6 @@ namespace SerpentLogger
             _recordFlusher.SetRecordBuffer(RecordedEntries.AsReadOnly());
             RecordedEntries = new List<ISerpentEntry>();
             _recordFlusher.FlushRecordBuffer();
-        }
-
-        public void SetRecordFlusher(IRecordFlusher flusher)
-        {
-            _recordFlusher = flusher;
-        }
-
-        public void SetDirectOutput(IDirectOutput output)
-        {
-            _directOutput = output;
         }
 
         private void WriteRecordToOutput(ISerpentEntry entry)
