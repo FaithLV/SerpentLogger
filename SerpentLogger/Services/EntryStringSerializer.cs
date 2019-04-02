@@ -14,7 +14,7 @@ namespace SerpentLogger.Services
             Options = SerializerOptions.IncludeSeverity | SerializerOptions.IncludeMessage;
         }
 
-        public ICollection<string> Serialize(ICollection<ISerpentEntry> entries)
+        public ICollection<string> Serialize(IEnumerable<ISerpentEntry> entries)
         {
             var collection = new List<string>();
 
