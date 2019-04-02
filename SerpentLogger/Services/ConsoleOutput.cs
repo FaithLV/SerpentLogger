@@ -1,4 +1,3 @@
-using SerpentAPI.Common.Serialization;
 using SerpentAPI.Interfaces;
 
 namespace SerpentLogger.Services
