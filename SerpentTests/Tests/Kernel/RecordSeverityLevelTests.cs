@@ -5,6 +5,8 @@ using SerpentAPI.Models;
 using SerpentAPI.Enums;
 using System.Linq;
 using SerpentAPI.Exceptions;
+using SerpentAPI.Interfaces;
+using Moq;
 
 namespace SerpentTests.Tests.Kernel
 {
@@ -14,7 +16,9 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void PassRecordWhenSeverityHigherThanMinimum()
         {
-            var serpent = new SerpentKernel();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty, EntrySeverity.Critical);
 
             serpent.MinimumSeverity = EntrySeverity.High;
@@ -26,7 +30,9 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void FailRecordWhenSeverityLowerThanMinimum()
         {
-            var serpent = new SerpentKernel();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty, EntrySeverity.Medium);
 
             serpent.MinimumSeverity = EntrySeverity.High;
@@ -38,7 +44,9 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void PassRecordWhenSeverityLowerThanMaximum()
         {
-            var serpent = new SerpentKernel();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty, EntrySeverity.Medium);
 
             serpent.MaximumSeverity = EntrySeverity.High;
@@ -50,7 +58,9 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void FailRecordWhenSeverityHigherThanMaximum()
         {
-            var serpent = new SerpentKernel();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty, EntrySeverity.Critical);
 
             serpent.MaximumSeverity = EntrySeverity.High;
@@ -62,7 +72,9 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void PassRecordWhenSeverityIsMinimum()
         {
-            var serpent = new SerpentKernel();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty, EntrySeverity.Informational);
 
             serpent.MinimumSeverity = EntrySeverity.Informational;
@@ -74,7 +86,9 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void PassRecordWhenSeverityIsMaximum()
         {
-            var serpent = new SerpentKernel();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty, EntrySeverity.Critical);
 
             serpent.MaximumSeverity = EntrySeverity.Critical;
@@ -86,7 +100,9 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void ThrowOnInvalidSeverityRange()
         {
-            var serpent = new SerpentKernel();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
             
             serpent.MinimumSeverity = EntrySeverity.Critical;
@@ -98,7 +114,9 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void PassSingleSeverityRangeValue()
         {
-            var serpent = new SerpentKernel();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty,EntrySeverity.Critical);
             
             serpent.MinimumSeverity = EntrySeverity.Critical;

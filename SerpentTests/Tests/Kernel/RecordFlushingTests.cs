@@ -4,8 +4,9 @@ using SerpentLogger;
 using SerpentAPI.Models;
 using SerpentAPI.Enums;
 using System.Linq;
-using SerpentTests.Mocks;
 using SerpentAPI.Exceptions;
+using Moq;
+using SerpentAPI.Interfaces;
 
 namespace SerpentTests.Tests.Kernel
 {
@@ -14,11 +15,11 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void PassFlushWithoutBypass()
         {
-            var serpent = new SerpentKernel();
-            var nullFlusher = new NullFlush();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
 
-            serpent.SetRecordFlusher(nullFlusher);
             serpent.ForceFlushOnRecord = false;
             serpent.Record(newEntry);
 
@@ -30,11 +31,11 @@ namespace SerpentTests.Tests.Kernel
         [Fact]
         public void ThrowManualFlushWithBypass()
         {
-            var serpent = new SerpentKernel();
-            var nullFlusher = new NullFlush();
+            var outputMock = new Mock<IDirectOutput>();
+            var flushMock = new Mock<IRecordFlusher>();
+            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
 
-            serpent.SetRecordFlusher(nullFlusher);
             serpent.ForceFlushOnRecord = true;
 
             Assert.Throws<InvalidFlushOperationException>( () => serpent.FlushRecords());
