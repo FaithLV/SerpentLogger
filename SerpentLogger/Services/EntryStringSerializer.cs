@@ -38,7 +38,7 @@ namespace SerpentLogger.Services
 
             if(Options.HasFlag(SerializerOptions.IncludeSeverity))
             {
-                result.Append($"[{nameof(entry.Severity)}] ");
+                result.Append($"[{entry.Severity.ToString()}] ");
             }
 
             if(Options.HasFlag(SerializerOptions.IncludeOrigin))
