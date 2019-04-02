@@ -3,7 +3,7 @@ using System.Text;
 using SerpentAPI.Enums;
 using SerpentAPI.Interfaces;
 
-namespace SerpentAPI.Common.Serialization
+namespace SerpentLogger.Services
 {
     public class EntryStringSerializer
     {
