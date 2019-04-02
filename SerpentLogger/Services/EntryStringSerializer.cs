@@ -8,10 +8,12 @@ namespace SerpentLogger.Services
     public class EntryStringSerializer
     {
         public SerializerOptions Options;
+        public string DateFormat { get; set; }
 
         public EntryStringSerializer()
         {
             Options = SerializerOptions.IncludeSeverity | SerializerOptions.IncludeMessage;
+            DateFormat = "HH:mm:ss";
         }
 
         public ICollection<string> Serialize(IEnumerable<ISerpentEntry> entries)
@@ -33,7 +35,7 @@ namespace SerpentLogger.Services
 
             if(Options.HasFlag(SerializerOptions.IncludeDate))
             {
-                result.Append($"[{entry.Date.Minute}:{entry.Date.Second}] ");
+                result.Append($"[{entry.Date.ToString(this.DateFormat)}] ");
             }
 
             if(Options.HasFlag(SerializerOptions.IncludeSeverity))
