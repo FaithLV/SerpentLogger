@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using SerpentAPI.Enums;
+using SerpentAPI.Exceptions;
 using SerpentAPI.Interfaces;
 
 namespace SerpentLogger.Services
@@ -31,6 +32,11 @@ namespace SerpentLogger.Services
 
         public string Serialize(ISerpentEntry entry)
         {
+            if(Options == 0)
+            {
+                throw new InvalidSerializerOptionsException();
+            }
+
             StringBuilder result = new StringBuilder();
 
             if(Options.HasFlag(SerializerOptions.IncludeDate))
