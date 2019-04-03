@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "serpent", "SerpentAPI\serpent.csproj", "{6F92A447-B122-41E7-BF02-C5183F4697F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerpentAPI", "SerpentAPI\SerpentAPI.csproj", "{6F92A447-B122-41E7-BF02-C5183F4697F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerpentLogger", "SerpentLogger\SerpentLogger.csproj", "{45CAEEA8-39D6-419B-BB08-D3CBFB3DDC31}"
 EndProject
