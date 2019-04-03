@@ -187,3 +187,5 @@ FakesAssemblies/
 
 # Coverlet coverage
 **/coverage.json
+**/lvoc.info
+**/lvoc.opencover.xml
