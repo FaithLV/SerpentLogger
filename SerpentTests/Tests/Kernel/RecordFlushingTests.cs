@@ -17,7 +17,7 @@ namespace SerpentTests.Tests.Kernel
         {
             var outputMock = new Mock<IDirectOutput>();
             var flushMock = new Mock<IRecordFlusher>();
-            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
+            var serpent = new SerpentLogger.Kernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
 
             serpent.ForceFlushOnRecord = false;
@@ -34,7 +34,7 @@ namespace SerpentTests.Tests.Kernel
         {
             var outputMock = new Mock<IDirectOutput>();
             var flushMock = new Mock<IRecordFlusher>();
-            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
+            var serpent = new SerpentLogger.Kernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
 
             serpent.ForceFlushOnRecord = true;
@@ -47,7 +47,7 @@ namespace SerpentTests.Tests.Kernel
         {
             var outputMock = new Mock<IDirectOutput>();
             var flushMock = new Mock<IRecordFlusher>();
-            var serpent = new SerpentKernel(flushMock.Object, outputMock.Object);
+            var serpent = new SerpentLogger.Kernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
             serpent.ForceFlushOnRecord = true;
 

@@ -8,7 +8,7 @@ using SerpentAPI.Interfaces;
 
 namespace SerpentLogger
 {
-    public class SerpentKernel
+    public class Kernel
     {
         List<ISerpentEntry> RecordedEntries = new List<ISerpentEntry>();
         IRecordFlusher _recordFlusher { get; set; }
@@ -19,7 +19,7 @@ namespace SerpentLogger
         public bool ForceFlushOnRecord = false;
         public bool SendRecordsToOutput = true;
 
-        public SerpentKernel(IRecordFlusher recordFlusher, IDirectOutput directOutput)
+        public Kernel(IRecordFlusher recordFlusher, IDirectOutput directOutput)
         {
             _recordFlusher = recordFlusher;
             _directOutput = directOutput;
