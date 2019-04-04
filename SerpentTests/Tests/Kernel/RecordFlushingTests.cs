@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using SerpentLogger;
+using SerpentKernel;
 using SerpentAPI.Models;
 using SerpentAPI.Enums;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace SerpentTests.Tests.Kernel
         {
             var outputMock = new Mock<IDirectOutput>();
             var flushMock = new Mock<IRecordFlusher>();
-            var serpent = new SerpentLogger.Kernel(flushMock.Object, outputMock.Object);
+            var serpent = new SerpentKernel.Kernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
 
             serpent.ForceFlushOnRecord = false;
@@ -34,7 +34,7 @@ namespace SerpentTests.Tests.Kernel
         {
             var outputMock = new Mock<IDirectOutput>();
             var flushMock = new Mock<IRecordFlusher>();
-            var serpent = new SerpentLogger.Kernel(flushMock.Object, outputMock.Object);
+            var serpent = new SerpentKernel.Kernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
 
             serpent.ForceFlushOnRecord = true;
@@ -47,7 +47,7 @@ namespace SerpentTests.Tests.Kernel
         {
             var outputMock = new Mock<IDirectOutput>();
             var flushMock = new Mock<IRecordFlusher>();
-            var serpent = new SerpentLogger.Kernel(flushMock.Object, outputMock.Object);
+            var serpent = new SerpentKernel.Kernel(flushMock.Object, outputMock.Object);
             var newEntry = new SerpentEntry(String.Empty);
             serpent.ForceFlushOnRecord = true;
 

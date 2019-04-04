@@ -6,7 +6,7 @@ using SerpentAPI.Enums;
 using SerpentAPI.Exceptions;
 using SerpentAPI.Interfaces;
 
-namespace SerpentLogger
+namespace SerpentKernel
 {
     public class Kernel
     {

@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using SerpentAPI.Interfaces;
-using SerpentLogger.Enums;
+using SerpentKernel.Enums;
 
-namespace SerpentLogger.Services
+namespace SerpentKernel.Services
 {
     public class FileFlusher : IRecordFlusher
     {

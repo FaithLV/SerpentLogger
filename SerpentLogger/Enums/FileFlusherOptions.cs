@@ -1,4 +1,4 @@
-namespace SerpentLogger.Enums
+namespace SerpentKernel.Enums
 {
     public enum FileFlusherOptions
     {

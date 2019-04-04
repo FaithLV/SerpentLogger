@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SerpentAPI.Enums;
 using SerpentAPI.Exceptions;
 using SerpentAPI.Models;
-using SerpentLogger.Services;
+using SerpentKernel.Services;
 using Xunit;
 
 namespace SerpentTests.Tests.Services

@@ -1,6 +1,6 @@
 using SerpentAPI.Interfaces;
 
-namespace SerpentLogger.Services
+namespace SerpentKernel.Services
 {
     public class ConsoleOutput : IDirectOutput
     {

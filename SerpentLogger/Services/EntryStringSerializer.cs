@@ -4,7 +4,7 @@ using SerpentAPI.Enums;
 using SerpentAPI.Exceptions;
 using SerpentAPI.Interfaces;
 
-namespace SerpentLogger.Services
+namespace SerpentKernel.Services
 {
     public class EntryStringSerializer
     {
