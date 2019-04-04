@@ -1,24 +1,26 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using SerpentAPI.Interfaces;
 using SerpentKernel.Enums;
+using SerpentKernel.Interfaces;
 
 namespace SerpentKernel.Services
 {
     public class FileFlusher : IRecordFlusher
     {
-
         public string TargetFilePath { get; set; }
         public FileFlusherOptions TargetFileOptions { get; set; }
 
         private ISerpentEntry[] RecordBuffer { get; set; }
         private readonly EntryStringSerializer _serializer;
+        private readonly IFileSystem _fileSystem;
 
-        public FileFlusher(EntryStringSerializer serializer)
+        public FileFlusher(EntryStringSerializer serializer, IFileSystem fileSystem)
         {
             _serializer = serializer;
+            _fileSystem = fileSystem;
+
             TargetFilePath = "./log.log";
             TargetFileOptions = FileFlusherOptions.Overwrite;
         }
@@ -67,12 +69,12 @@ namespace SerpentKernel.Services
 
         private void AppendToFile(string buffer)
         {
-            File.AppendAllText(TargetFilePath, buffer);
+            _fileSystem.AppendAllText(TargetFilePath, buffer);
         }
 
         private void OverwriteFile(string buffer)
         {
-            File.WriteAllText(TargetFilePath, buffer);
+            _fileSystem.WriteAllText(TargetFilePath, buffer);
         }
     }
 }
