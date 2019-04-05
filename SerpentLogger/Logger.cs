@@ -23,7 +23,6 @@ namespace SerpentLogger
         {
             InitializeSerializer();
             Kernel = SetupKernel();
-            Log("Logger Initialized Succesfully!");
         }
 
         /// <summary> Write an entry to log record buffer
