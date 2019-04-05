@@ -34,9 +34,7 @@ namespace SerpentTests.Tests.Services
             serializer.Options = SerializerOptions.IncludeDate | SerializerOptions.IncludeMessage | SerializerOptions.IncludeOrigin | SerializerOptions.IncludeSeverity;
 
             var entry = new SerpentEntry("Hi!", EntrySeverity.Informational, "Unit Test");
-
             var serialized = serializer.Serialize(entry);
-            System.Console.WriteLine(serialized);
 
             Assert.Contains(entry.Date.ToString(serializer.DateFormat), serialized);
             Assert.Contains(entry.Message ,serialized);
