@@ -6,6 +6,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>SerpentLogger.Kernel</PackageId>
+    <Authors>Valters Tomsons</Authors>
+    <Version>1.0.0</Version>
+    <Description>Kernel module for a flexlible logging system</Description>
+    <Copyright>2019</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/FaithLV/SerpentLogger/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/FaithLV/SerpentLogger</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>
