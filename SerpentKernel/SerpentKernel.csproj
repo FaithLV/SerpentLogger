@@ -12,8 +12,13 @@
     <Description>Kernel module for a flexlible logging system</Description>
     <Copyright>2019</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/FaithLV/SerpentLogger/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/FaithLV/SerpentLogger</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/FaithLV/SerpentLogger</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+  </ItemGroup>
 
 </Project>
