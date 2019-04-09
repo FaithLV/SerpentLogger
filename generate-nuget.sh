@@ -1,5 +1,5 @@
 #!/bin/sh
-dotnet pack --include-source --include-symbols -c Release --output nupkgs
+dotnet pack --include-source --no-build --include-symbols -c Release --output nupkgs
 
 mkdir bin/nupkgs
 
